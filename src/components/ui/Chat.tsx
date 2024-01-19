@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "./card";
 import { useChat } from 'ai/react';
+import { ScrollArea } from '@/components/ui/scroll-area';
 
 
 
@@ -13,15 +14,16 @@ export default function Chat(){
     const { messages, input, handleInputChange, handleSubmit } = useChat();
     return(
        
-    <Card className='w-[448px] h-[788px] grid grid-rows-[min-content_1fr_min-content'>
+    <Card className='w-[448px]  '>
         <CardHeader>
           <CardTitle> Chat AI</CardTitle>
           <CardDescription> Using Vercel SDK to create a chat bot.</CardDescription>
         </CardHeader>
-        <CardContent className='space-y-4'>
+        <CardContent >
+          <ScrollArea className='h-[648px] w-full  pr-4'>
             {messages.map(message => {
                 return(
-                <div key={message.id} className='flex gap-3 text-slate-600 text-sm'>
+                <div key={message.id} className='flex gap-3 text-slate-600 text-sm mb-4'>
                    {message.role === 'user' && (
                      <Avatar>
                      <AvatarFallback>DF</AvatarFallback>
@@ -43,10 +45,12 @@ export default function Chat(){
                    {message.content}
                     </p>
                 </div>
+                
                 )
             }
+            
                 )}
-          
+          </ScrollArea>
 
             
 
